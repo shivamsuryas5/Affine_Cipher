@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+/// Enter word in CapsLock only///
+int main()
+{
+    int i,a,b,choice,d,sum,j;
+    char word[100],enc[100],dec[100];
+    cout<<"Enter the word = ";
+    cin>>word;
+    cout<<"\n";
+    cout<<"Enter the alpha and beta value = ";
+    cin>>a>>b;
+    while(1)
+    {
+        cout<<"Menu\n1.Encryption\n2.Decryption\n3.Exit\n";
+        cout<<"Enter the choice = ";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+            {
+
+                for(i=0;i<strlen(word);i++)
+                {
+                        d = (int)word[i]  -65;
+                        sum = (a*d + b)%26;
+                        sum = sum+65;
+                        enc[i] = (char)sum;
+                }
+                cout<<enc;
+                cout<<"\n";
+                break;
+            }
+            case 2:
+            {
+                for(i=0;i<26;i++)
+                {
+                    if((a*i)%26==1)
+                    {
+                        break;
+                    }
+                }
+                for(j=0;j<strlen(enc);j++)
+                {
+                  dec[j] = (char)(((i* ((enc[j]+'A' - b)) % 26)) + 'A');
+                }
+                for(j=0;j<strlen(dec);j++)
+                {
+                    if(dec[j]>='A' && dec[j]<='Z')
+                    {
+                        cout<<dec[j];
+                    }
+                }
+                cout<<"\n";
+                break;
+            }
+            case 3:
+                {
+                    exit(0);
+                    break;
+                }
+        }
+    }
+    return 0;
+}
